@@ -1,0 +1,43 @@
+# This project was generated with 0.3.23.dev7+g16c9f139 using template: https://github.com/beeware/briefcase-template@main
+[tool.briefcase]
+project_name = "Image Classification"
+bundle = "com.example"
+version = "0.0.1"
+url = "https://example.com/image_classification"
+license.file = "LICENSE"
+author = "Jane Developer"
+author_email = "jane@example.com"
+
+[tool.briefcase.app.imageclassification]
+formal_name = "Image Classification"
+description = "My first application"
+long_description = """More details about the app should go here.
+"""
+sources = [
+    "src/imageclassification",
+]
+
+requires = [
+    "numpy==1.19.5",
+    "opencv-python==4.5.1.48",
+    "tflite-runtime==2.5.0"
+]
+
+permission.camera = "This app uses the camera"
+
+[tool.briefcase.app.imageclassification.android]
+requires = [
+    "toga-android==0.4.7",
+]
+build_gradle_extra_content = """
+    android.defaultConfig {
+        ndk.abiFilters = ["arm64-v8a"]
+        python.version = "3.8"  // For tflite and opencv
+    }
+"""
+
+base_theme = "Theme.MaterialComponents.Light.DarkActionBar"
+
+build_gradle_dependencies = [
+    "com.google.android.material:material:1.12.0",
+]
